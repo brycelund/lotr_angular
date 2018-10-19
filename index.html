@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html ng-app="LOTRApp">
+  <head>
+    <title>LOTR Selector</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.5/angular.min.js"></script>
+    <script src="lotr.js"></script>
+    <link type="text/css" rel="stylesheet" href="lotr.css" />
+  </head>
+
+  <body ng-controller="LOTRController" style="background-image: url({{ (character == '' || (characters | filter:{fullname:character}).length == 0)?'images/lotr.jpg':((characters | filter:{fullname:character})[0].image) }});">
+
+    <div class="littleBox">
+      <input type="text" placeholder="Search for a Lord of the Rings character" ng-model="character" class="inputbox">
+      <div class="resultbox" style="{{ (character == '' || (characters | filter:{fullname:character}).length == 0)?'display:none':'' }}">
+        <span class="characterHeader">{{ (character == "")?'':((characters | filter:{fullname:character})[0].fullname) }}</span>
+        <p class="characterBio">{{ (character == "")?'':((characters | filter:{fullname:character})[0].bio) }}</p>
+      </div>
+    </div>
+  </body>
+</html>
